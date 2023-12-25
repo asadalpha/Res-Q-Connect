@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "796975791993",
+    "project_id": "resq-ccace",
+    "storage_bucket": "resq-ccace.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:796975791993:android:82f999aa26eaa145abb9a8",
+        "android_client_info": {
+          "package_name": "com.example.disaster_managment_sih"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwIHc74FzamoTVohk2J8UEqV1DmtPk70w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
