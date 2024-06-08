@@ -2,13 +2,9 @@ import 'package:resq_connect/view/auth_screens/orgSide/login_page_org.dart';
 import 'package:resq_connect/view/auth_screens/orgSide/register_org_screen.dart';
 import 'package:resq_connect/model/auth/services/auth_service.dart';
 import 'package:resq_connect/view/widgets/customtextfield.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-
-
-
 
 class SignUpOrg extends StatefulWidget {
   const SignUpOrg({super.key});
@@ -22,19 +18,19 @@ class _SignUpOrgState extends State<SignUpOrg> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController cnfmpassController = TextEditingController();
+  //final TextEditingController cnfmpassController = TextEditingController();
   bool isSendingReq = false;
   void signUp() async {
-    if (passwordController.text != cnfmpassController.text) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Passwords do not Match! ")));
-      return;
-    }
-    if (userNameController.text.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Passwords do not Match! ")));
-      return;
-    }
+    // if (passwordController.text != cnfmpassController.text) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(content: Text("Passwords do not Match! ")));
+    //   return;
+    // }
+    // if (userNameController.text.isEmpty) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //       const SnackBar(content: Text("Passwords do not Match! ")));
+    //   return;
+    // }
 
     final authService = Provider.of<AuthService>(context, listen: false);
 
@@ -43,15 +39,15 @@ class _SignUpOrgState extends State<SignUpOrg> {
         isSendingReq = true;
       });
       await authService.signUpWithEmailPassword(emailController.text,
-          passwordController.text, userNameController.text);
-      // ignore: use_build_context_synchronously
+          passwordController.text, userNameController.text, true);
+
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const RegisterOrgScreen(),
         ),
       );
-      //print("sign up success");
+      debugPrint("sign up success");
     } catch (e) {
       setState(() {
         isSendingReq = false;
@@ -66,13 +62,6 @@ class _SignUpOrgState extends State<SignUpOrg> {
       );
     }
   }
-  //   void signUpUser() async {
-  //   FirebaseAuthMethods(FirebaseAuth.instance).signUpWithEmail(
-  //     email: emailController.text,
-  //     password: passwordController.text,
-  //     context: context,
-  //   );
-  // }
 
   @override
   void dispose() {
@@ -85,36 +74,19 @@ class _SignUpOrgState extends State<SignUpOrg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-          // const Text(
-          //   "Greetings,",
-          //   style: TextStyle(
-          //       fontFamily: "Montserrat",
-          //       fontSize: 28,
-          //       fontWeight: FontWeight.bold),
-          // ),
-          Container(
-            height: 200,
-            width: 200,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/loginart.png"))),
-          ),
+        padding: const EdgeInsets.only(left: 20.0, right: 20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Sign Up",
-                style: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              ),
+            padding: EdgeInsets.only(top: 40.0, bottom: 20),
+            child: Text(
+              "Sign Up",
+              style: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           CustomTextField(
@@ -122,117 +94,94 @@ class _SignUpOrgState extends State<SignUpOrg> {
             controller: userNameController,
             text1: "Username",
           ),
+          SizedBox(
+            height: 20.h,
+          ),
           CustomTextField(
             maxLines: 1,
             controller: emailController,
             text1: "Email",
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black12, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: TextFormField(
-                  obscureText: true,
-                  cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                  controller: passwordController,
-                  decoration: const InputDecoration(
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: "Password"),
-                  maxLines: 1,
-                ),
-              ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black12, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: TextFormField(
-                  obscureText: hideText,
-                  cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                  controller: cnfmpassController,
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              hideText = !hideText;
-                            });
-                          },
-                          icon: hideText
-                              ? Icon(
-                                  Icons.visibility_off_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )
-                              : Icon(
-                                  Icons.visibility_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: "Confirm Password"),
-                  maxLines: 1,
-                ),
-              ),
-            ),
-          ),
           SizedBox(
-            height: 70.h,
+            height: 20.h,
           ),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: isSendingReq
-                ? const Center(
-                    child:  CircularProgressIndicator(
-                      valueColor:
-                           AlwaysStoppedAnimation<Color>(Colors.blue),
-                    ),
-                  )
-                : SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFF4727A)),
-                        onPressed: () {
-                          signUp();
-                        },
-                        child: const Text(
-                          "Continue",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ))),
+          TextFormField(
+            obscureText: hideText,
+            cursorWidth: 2,
+            cursorColor: Colors.white,
+            controller: passwordController,
+            decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        hideText = !hideText;
+                      });
+                    },
+                    icon: hideText
+                        ? Icon(
+                            Icons.visibility_off_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )
+                        : Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                hintText: "Password"),
+            maxLines: 1,
           ),
+          const Spacer(),
+          isSendingReq
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
+              : SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        signUp();
+                      },
+                      child: const Text(
+                        "Continue",
+                        style: TextStyle(
+                            color: Colors.white,
+                            // fontFamily: "Montserrat",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text("Already have an account?"),
+              const Text("New To ResQ?"),
               TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginPageOrg()));
+                        builder: (context) => const SignUpOrg()));
                   },
-                  child: const Text(
-                    "Sign In",
+                  child: Text(
+                    "Sign Up",
                     style: TextStyle(
-                        color: Color(
-                          0xFFF4727A,
-                        ),
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold),
                   ))
             ],

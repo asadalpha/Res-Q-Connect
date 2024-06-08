@@ -39,7 +39,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
   }
 
   List<String> orgCategories = [
-    "fire",
+    "Fire",
     "Earthquake",
     "Flood",
   ];
@@ -112,7 +112,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
         double.parse(latitude), double.parse(longitude));
     //print(latitude);
     //print(longitude);
-   // print(placemarks.last.locality);
+    // print(placemarks.last.locality);
   }
 
   void getLocation() {
@@ -121,7 +121,6 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
 
   @override
   void initState() {
-    
     super.initState();
     getLocation();
   }
@@ -146,29 +145,6 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(50),
-          child: AppBar(
-            elevation: 0,
-            flexibleSpace: Container(
-              decoration:
-                  const BoxDecoration(color: Color.fromARGB(255, 246, 246, 246)
-                      // gradient: GlobalVariables.appBarGradient
-                      ),
-            ),
-            title: Container(
-              alignment: Alignment.center,
-              child: const Text(
-                "Register Orgs",
-                style: TextStyle(
-                  fontSize: 27,
-                  color: Colors.black,
-                  fontWeight: FontWeight.w600,
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
-            ),
-          )),
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
@@ -177,7 +153,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
           child: Form(
               key: _addProductKey,
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 14),
+                padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -211,21 +187,22 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: Column(
+                                  child: const Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      const Icon(
+                                      Icon(
                                         Icons.folder_open_outlined,
                                         size: 40,
                                       ),
-                                      const SizedBox(
+                                      SizedBox(
                                         height: 10,
                                       ),
                                       Text(
                                         "Select images for Org",
                                         style: TextStyle(
                                             fontSize: 15,
-                                            color: Colors.grey.shade400),
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255)),
                                       ),
                                     ],
                                   ),
@@ -236,7 +213,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty || value == null) {
+                        if (value!.isEmpty) {
                           return 'data is required';
                         }
                         return null;
@@ -256,7 +233,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty || value == null) {
+                        if (value!.isEmpty) {
                           return 'data is required';
                         }
                         return null;
@@ -278,7 +255,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty || value == null) {
+                        if (value!.isEmpty) {
                           return 'data is required';
                         }
                         return null;
@@ -298,7 +275,7 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        if (value!.isEmpty || value == null) {
+                        if (value!.isEmpty) {
                           return 'data is required';
                         }
                         return null;
@@ -313,39 +290,30 @@ class _RegisterOrgScreenState extends State<RegisterOrgScreen> {
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    const SizedBox(
-                      height: 14,
-                    ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 10),
-                      child: OutlinedButton(
-                        onPressed: _submitForm,
-                        style: ButtonStyle(
-                          fixedSize:
-                              MaterialStateProperty.all(const Size(350, 40)),
-                          shape: MaterialStateProperty.all(
-                            const ContinuousRectangleBorder(
-                              borderRadius: BorderRadiusDirectional.all(
-                                Radius.circular(13),
-                              ),
-                            ),
-                          ),
-                          backgroundColor: MaterialStateProperty.all(
-                            const Color.fromARGB(255, 48, 130, 201),
-                          ),
-                        ),
-                        child: const Text(
-                          "Submit",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                          ),
-                        ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+                      child: SizedBox(
+                        height: 50,
+                        width: double.infinity,
+                        child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8)),
+                                backgroundColor:
+                                    Theme.of(context).primaryColor),
+                            onPressed: () {
+                              _submitForm();
+                            },
+                            child: const Text(
+                              'Submit',
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  // fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18),
+                            )),
                       ),
-                    ),
+                    )
                   ],
                 ),
               )),

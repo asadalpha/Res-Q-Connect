@@ -42,8 +42,8 @@ class _SignUpPublicState extends State<SignUpPublic> {
         isSendingReq = true;
       });
       await authService.signUpWithEmailPassword(emailController.text,
-          passwordController.text, userNameController.text);
-      // ignore: use_build_context_synchronously
+          passwordController.text, userNameController.text,false);
+      
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

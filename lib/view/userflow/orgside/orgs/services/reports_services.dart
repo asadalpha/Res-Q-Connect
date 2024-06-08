@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-
 import 'package:http/http.dart' as http;
 
 Map<String, dynamic> data = {};
@@ -15,8 +14,6 @@ Future<List<dynamic>> fetchDataFromApi() async {
     var responseData = json.decode(response.body);
     print(responseData.toString());
     return responseData;
-    print(responseData);
-    print("af");
   } else {
     // Handle the error response here if needed
     throw Exception('Failed to fetch data: ${response.statusCode}');

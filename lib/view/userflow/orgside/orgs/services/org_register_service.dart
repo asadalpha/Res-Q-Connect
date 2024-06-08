@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:resq_connect/model/sosService/disaster_model.dart';
 import 'package:resq_connect/view/userflow/orgside/orgs/services/org_class.dart';
 import 'package:http/http.dart' as http;
@@ -31,8 +32,8 @@ Future<void> postOrgDataToServer({
   );
 
   if (response.statusCode == 200) {
-    print('Data posted successfully!');
+    debugPrint('Data posted successfully!');
   } else {
-    print('Failed to post data: ${response.statusCode}');
+    debugPrint('Failed to post data: ${response.statusCode}');
   }
 }

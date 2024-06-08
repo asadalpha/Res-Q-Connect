@@ -17,10 +17,16 @@ class BottomNavBarOrg extends StatefulWidget {
 class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
   var pageIndex = 0;
 
-  final pages = [const HomePageOrg(), const ChatScreen(), const MapScreen(), const AboutScreen()];
+  final pages = [
+    const HomePageOrg(),
+    const ChatScreen(),
+    const MapScreen(),
+    const AboutScreen()
+  ];
 
   @override
   Widget build(BuildContext context) {
+    const appPrimaryColor = Colors.black;
     return Scaffold(
       body: pages[pageIndex],
       bottomNavigationBar: Container(
@@ -28,12 +34,12 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
           height: 65.h,
           decoration: BoxDecoration(
               color: const Color.fromARGB(255, 255, 255, 255),
-              boxShadow: const [
-                BoxShadow(
-                    color: Color.fromRGBO(110, 109, 109, 1),
-                    blurRadius: 20,
-                    offset: Offset(0, 10))
-              ],
+              // boxShadow: const [
+              //   BoxShadow(
+              //       color: Color.fromRGBO(110, 109, 109, 1),
+              //       blurRadius: 20,
+              //       offset: Offset(0, 10))
+              // ],
               borderRadius: BorderRadius.circular(10)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -48,7 +54,7 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
                   icon: pageIndex == 0
                       ? Image.asset(
                           "assets/icons/home.png",
-                          color: Colors.black,
+                          color: appPrimaryColor,
                           height: 35.h,
                         )
                       : Image.asset(
@@ -66,7 +72,7 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
                   icon: pageIndex == 1
                       ? const Icon(
                           Icons.chat_bubble_outline,
-                          color: Colors.black,
+                          color: appPrimaryColor,
                           size: 30,
                         )
                       : const Icon(
@@ -84,7 +90,7 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
                   icon: pageIndex == 2
                       ? Icon(
                           Icons.location_on_outlined,
-                          color: Colors.black,
+                          color: appPrimaryColor,
                           size: 35.h,
                         )
                       : Icon(
@@ -102,7 +108,7 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
                   icon: pageIndex == 3
                       ? Image.asset(
                           "assets/icons/account.png",
-                          color: Colors.black,
+                          color: appPrimaryColor,
                           height: 35.h,
                         )
                       : Image.asset(

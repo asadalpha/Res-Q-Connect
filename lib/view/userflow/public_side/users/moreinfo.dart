@@ -113,7 +113,6 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
 
   @override
   void dispose() {
-   
     super.dispose();
     images.clear();
     detailsController.dispose();
@@ -122,7 +121,6 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
 
   @override
   void initState() {
-   
     super.initState();
     getLocation();
   }
@@ -280,8 +278,8 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
                             width: double.infinity,
                             child: ElevatedButton(
                               onPressed: () {
-                                 //print(widget.disasterType);
-                                final now =  DateTime.now();
+                                //print(widget.disasterType);
+                                final now = DateTime.now();
                                 String time =
                                     DateFormat('HH:mm:ss').format(now);
                                 String date = DateFormat('d/M/y')

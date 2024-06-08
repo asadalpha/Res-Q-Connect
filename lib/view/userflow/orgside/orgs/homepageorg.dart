@@ -4,10 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'services/reports_services.dart';
 
-
-
 class HomePageOrg extends StatefulWidget {
-  const HomePageOrg({Key? key});
+  const HomePageOrg({super.key});
 
   @override
   State<HomePageOrg> createState() => _HomePageOrgState();
@@ -19,19 +17,13 @@ class _HomePageOrgState extends State<HomePageOrg> {
   List<String?> Locality = [];
   @override
   void initState() {
-    // getdate();
-    // fetchData();
+    fetchData();
     super.initState();
   }
 
   Future<dynamic> fetchData() async {
     try {
       final responseData = await fetchDataFromApi();
-      final res = responseData[0]["name"].toString();
-      print(responseData[0]["name"].toString());
-      print("hello");
-      print(responseData);
-
       setState(() {
         data = responseData;
       });
@@ -125,9 +117,6 @@ class _HomePageOrgState extends State<HomePageOrg> {
               SizedBox(
                 height: 20.h,
               ),
-              // if (data.isNotEmpty)
-
-              // CAUTION :::: REMOVE FUTURE BUILDER AFTER CREATING DEMO VIDEO FIND BETTER SOLUTION
               FutureBuilder(
                 future: fetchData(),
                 builder: (context, snapshot) {
@@ -156,11 +145,8 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        // "Food Shortage",
                                         data[index]["dtype"] ?? "Disaster type",
                                         overflow: TextOverflow.ellipsis,
-                                        // data[index]["description"] ??
-                                        //     "description",
                                         style: TextStyle(
                                             fontFamily: "Montserrat",
                                             fontWeight: FontWeight.bold,
@@ -173,7 +159,6 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                         height: 15.h,
                                         width: 180.w,
                                         child: Text(
-                                          // "The area is flooded with water and people are stuck",
                                           "Description: ${data[index]["description"] ?? " Description"} ",
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -189,7 +174,6 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                         height: 15.h,
                                         width: 180.w,
                                         child: Text(
-                                          // "The area is flooded with water and people are stuck",
                                           "Reported by : ${data[index]["name"] ?? " Name "} ",
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -205,7 +189,6 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                         height: 20.h,
                                         width: 180.w,
                                         child: Text(
-                                          // "The area is flooded with water and people are stuck",
                                           "Contact : ${data[index]["contact"]} ",
                                           overflow: TextOverflow.ellipsis,
                                           style: TextStyle(
@@ -229,7 +212,10 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                           SizedBox(
                                             width: 100.w,
                                             child: Text(
-                                              Locality[index] ?? "location ",
+                                              index < Locality.length
+                                                  ? Locality[index] ??
+                                                      "location"
+                                                  : "Fetching location...",
                                               overflow: TextOverflow.ellipsis,
                                             ),
                                           ),
@@ -239,13 +225,10 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                           SizedBox(
                                             width: 80.w,
                                             child: Text(
-                                              data[index]["date"] ??
-                                                  " date " +
-                                                      data[index][" time"] ??
-                                                  " time ",
+                                              "${data[index]["date"] ?? "date"} ${data[index]["time"] ?? "time"}",
                                               overflow: TextOverflow.ellipsis,
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
                                     ],
@@ -258,11 +241,12 @@ class _HomePageOrgState extends State<HomePageOrg> {
                                     child: SizedBox(
                                       height: 100.h,
                                       width: 110.w,
-                                      child: Image.network(
-                                        data[index]["image"] ??
-                                            const Placeholder(),
-                                        fit: BoxFit.fill,
-                                      ),
+                                      child: data[index]["image"] != null
+                                          ? Image.network(
+                                              data[index]["image"],
+                                              fit: BoxFit.fill,
+                                            )
+                                          : const Placeholder(),
                                     ),
                                   ),
                                 ],

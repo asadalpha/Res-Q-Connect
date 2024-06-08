@@ -24,6 +24,7 @@ class _LoginPageOrgState extends State<LoginPageOrg> {
   bool isSendingReq = false;
   void signIn() async {
     final authService = Provider.of<AuthService>(context, listen: false);
+
     try {
       setState(() {
         isSendingReq = true;
@@ -56,29 +57,28 @@ class _LoginPageOrgState extends State<LoginPageOrg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-          Container(
-            height: 200,
-            width: 200,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/loginart.png"))),
+        padding: const EdgeInsets.only(left: 20, right: 20),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+            child: Center(
+              child: Image.asset(
+                'assets/images/girl_stairs.png',
+                height: 160,
+              ),
+            ),
           ),
           const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Log In",
-                style: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              ),
+            padding: EdgeInsets.only(top: 6.0, bottom: 6),
+            child: Text(
+              "Log In",
+              style: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           CustomTextField(
@@ -86,80 +86,72 @@ class _LoginPageOrgState extends State<LoginPageOrg> {
             controller: emailController,
             text1: "Email",
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black12, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: TextFormField(
-                  obscureText: hideText,
-                  cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              hideText = !hideText;
-                            });
-                          },
-                          icon: hideText
-                              ? Icon(
-                                  Icons.visibility_off_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )
-                              : Icon(
-                                  Icons.visibility_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: "Password"),
-                  maxLines: 1,
-                ),
-              ),
-            ),
-          )
-          // CustomTextField(
-          //   maxLines: 1,
-          //   controller: passwordController,
-          //   text1: "Password",
-          // ),
-          ,
           SizedBox(
-            height: 100.h,
+            height: 20.h,
           ),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: isSendingReq
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      valueColor:
-                          AlwaysStoppedAnimation<Color>(Colors.blue),
-                    ),
-                  )
-                : SizedBox(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFF4727A)),
-                        onPressed: () {
-                          signIn();
-                        },
-                        child: const Text(
-                          "Continue",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ))),
+          TextFormField(
+            obscureText: hideText,
+            cursorWidth: 2,
+            cursorColor: Colors.white,
+            controller: passwordController,
+            decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        hideText = !hideText;
+                      });
+                    },
+                    icon: hideText
+                        ? Icon(
+                            Icons.visibility_off_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )
+                        : Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                hintText: "Password"),
+            maxLines: 1,
           ),
+          const Spacer(),
+          isSendingReq
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
+              : SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        signIn();
+                      },
+                      child: const Text(
+                        "Continue",
+                        style: TextStyle(
+                            color: Colors.white,
+                            // fontFamily: "Montserrat",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -170,12 +162,10 @@ class _LoginPageOrgState extends State<LoginPageOrg> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SignUpOrg()));
                   },
-                  child: const Text(
+                  child: Text(
                     "Sign Up",
                     style: TextStyle(
-                        color: Color(
-                          0xFFF4727A,
-                        ),
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold),
                   ))
             ],

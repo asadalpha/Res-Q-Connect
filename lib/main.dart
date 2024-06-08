@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
-
 import 'view/landingpage/landingpage.dart';
-
 
 void main() async {
   // await dotenv.load(fileName: ".env");
@@ -37,10 +35,9 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
               debugShowCheckedModeBanner: false,
               title: 'SIH App',
-              theme: ThemeData(
-                // fontFamily: 'Montserrat',
-                primarySwatch: Colors.blue,
-              ),
+              theme: ThemeData.dark().copyWith(
+                  primaryColor: const Color(0xFF744EBA),
+                  scaffoldBackgroundColor: const Color(0xFF1A1A1A)),
               // home: const LandingPage(),
               // home: StreamBuilder(
               //   builder: (context, snapshot) {
