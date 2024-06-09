@@ -25,11 +25,12 @@ ResQ Connect is a mobile application designed to connect agencies and NGOs to he
 
 ## Screenshots
 
-<p align="center" >
-  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/1.png" alt="Screenshot 1" width="200"/>
-  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/2.png" alt="Screenshot 2" width="200"/>
-  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/3.png" alt="Screenshot 3" width="200"/>
-</p>
+<div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
+  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/1.png" alt="Screenshot 1" width="30%"/>
+  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/2.png" alt="Screenshot 2" width="30%"/>
+  <img src="https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/app_screenshots/3.png" alt="Screenshot 3" width="30%"/>
+</div>
+
 
 ## Tech Stack
 
