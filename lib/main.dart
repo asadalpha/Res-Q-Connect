@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:resq_connect/model/auth/auth_checker.dart';
 import 'package:resq_connect/model/auth/services/auth_service.dart';
 
 import 'package:resq_connect/firebase_options.dart';
@@ -13,6 +15,7 @@ void main() async {
   // await dotenv.load(fileName: ".env");
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+ // await FirebaseAuth.instance.setPersistence(Persistence.LOCAL);
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthService(),
@@ -49,7 +52,7 @@ class MyApp extends StatelessWidget {
               //   },
               //   stream: FirebaseAuth.instance.authStateChanges(),
               // )
-              home: const LandingPage());
+              home: const AuthChecker());
         });
   }
 }

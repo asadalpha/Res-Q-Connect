@@ -18,20 +18,9 @@ class _SignUpOrgState extends State<SignUpOrg> {
   final TextEditingController userNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  //final TextEditingController cnfmpassController = TextEditingController();
+
   bool isSendingReq = false;
   void signUp() async {
-    // if (passwordController.text != cnfmpassController.text) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(content: Text("Passwords do not Match! ")));
-    //   return;
-    // }
-    // if (userNameController.text.isEmpty) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //       const SnackBar(content: Text("Passwords do not Match! ")));
-    //   return;
-    // }
-
     final authService = Provider.of<AuthService>(context, listen: false);
 
     try {

@@ -26,14 +26,14 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
 
   @override
   Widget build(BuildContext context) {
-    const appPrimaryColor = Colors.black;
+    const appPrimaryColor = Colors.white;
     return Scaffold(
       body: pages[pageIndex],
       bottomNavigationBar: Container(
           margin: EdgeInsets.only(left: 13.w, right: 13.w, bottom: 16.h),
           height: 65.h,
           decoration: BoxDecoration(
-              color: const Color.fromARGB(255, 255, 255, 255),
+              color: Theme.of(context).primaryColor,
               // boxShadow: const [
               //   BoxShadow(
               //       color: Color.fromRGBO(110, 109, 109, 1),

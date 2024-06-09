@@ -33,6 +33,7 @@ class AuthService extends ChangeNotifier {
         'email': email,
         'password': password,
         'username': username,
+        'isAdmin':isAdmin
       });
     } on FirebaseAuthException catch (e) {
       throw Exception(e.code);

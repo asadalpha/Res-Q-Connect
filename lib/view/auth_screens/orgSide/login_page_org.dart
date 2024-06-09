@@ -62,17 +62,17 @@ class _LoginPageOrgState extends State<LoginPageOrg> {
           child: Padding(
         padding: const EdgeInsets.only(left: 20, right: 20),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Padding(
-            padding: const EdgeInsets.only(top: 20.0, bottom: 20),
-            child: Center(
-              child: Image.asset(
-                'assets/images/girl_stairs.png',
-                height: 160,
-              ),
-            ),
-          ),
+          // Padding(
+          //   padding: const EdgeInsets.only(top: 20.0, bottom: 20),
+          //   child: Center(
+          //     child: Image.asset(
+          //       'assets/images/girl_stairs.png',
+          //       height: 160,
+          //     ),
+          //   ),
+          // ),
           const Padding(
-            padding: EdgeInsets.only(top: 6.0, bottom: 6),
+            padding: EdgeInsets.only(top: 40.0, bottom: 20),
             child: Text(
               "Log In",
               style: TextStyle(

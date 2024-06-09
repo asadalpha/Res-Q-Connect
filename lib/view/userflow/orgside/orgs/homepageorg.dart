@@ -46,8 +46,8 @@ class _HomePageOrgState extends State<HomePageOrg> {
       return responseData;
     } catch (e) {
       // Handle any errors that occur during the HTTP request
-      print('Error: $e');
-      throw e;
+      debugPrint('Error: $e');
+      rethrow;
     }
   }
 
@@ -56,14 +56,15 @@ class _HomePageOrgState extends State<HomePageOrg> {
     return SafeArea(
       child: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.only(left: 17.w, top: 12.h),
+          padding: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
                 height: 10.h,
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "Welcome",
@@ -73,14 +74,11 @@ class _HomePageOrgState extends State<HomePageOrg> {
                       fontSize: 24.sp,
                     ),
                   ),
-                  SizedBox(
-                    width: 200.w,
-                  ),
                   IconButton(
                     onPressed: () {},
                     icon: Icon(
                       Icons.notifications_none,
-                      size: 30.sp,
+                      size: 26.sp,
                     ),
                   ),
                 ],
@@ -93,7 +91,7 @@ class _HomePageOrgState extends State<HomePageOrg> {
                 width: double.infinity,
                 decoration: BoxDecoration(
                   image: const DecorationImage(
-                    image: AssetImage("assets/images/people.png"),
+                    image: AssetImage("assets/images/people_2.png"),
                     fit: BoxFit.cover,
                   ),
                   color: const Color.fromARGB(255, 255, 255, 255),
@@ -110,7 +108,7 @@ class _HomePageOrgState extends State<HomePageOrg> {
                   style: TextStyle(
                     fontFamily: "Roboto",
                     fontWeight: FontWeight.w400,
-                    fontSize: 22.sp,
+                    fontSize: 26.sp,
                   ),
                 ),
               ),
@@ -126,139 +124,140 @@ class _HomePageOrgState extends State<HomePageOrg> {
                     shrinkWrap: true,
                     itemCount: data.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                        onTap: () {},
-                        child: Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.only(
-                                left: 2.w,
-                                bottom: 12.h,
-                                top: 2.h,
-                              ),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        child: InkWell(
+                          onTap: () {},
+                          child: Column(
+                            children: [
+                              Container(
+                                // padding: const EdgeInsets.only(),
+                                decoration: BoxDecoration(
+                                  // color: Colors.grey[300],
+                                  borderRadius: BorderRadius.circular(10.sp),
+                                  border: Border.all(
+                                    color: Theme.of(context).primaryColor,
+                                  ),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceAround,
                                     children: [
-                                      Text(
-                                        data[index]["dtype"] ?? "Disaster type",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontFamily: "Montserrat",
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 20.sp),
-                                      ),
-                                      SizedBox(
-                                        height: 6.h,
-                                      ),
-                                      SizedBox(
-                                        height: 15.h,
-                                        width: 180.w,
-                                        child: Text(
-                                          "Description: ${data[index]["description"] ?? " Description"} ",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 10.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      SizedBox(
-                                        height: 15.h,
-                                        width: 180.w,
-                                        child: Text(
-                                          "Reported by : ${data[index]["name"] ?? " Name "} ",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 10.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      SizedBox(
-                                        height: 20.h,
-                                        width: 180.w,
-                                        child: Text(
-                                          "Contact : ${data[index]["contact"]} ",
-                                          overflow: TextOverflow.ellipsis,
-                                          style: TextStyle(
-                                            fontSize: 10.sp,
-                                            fontWeight: FontWeight.w400,
-                                          ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        height: 2.h,
-                                      ),
-                                      Row(
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
-                                          const Icon(
-                                            Icons.location_pin,
-                                            size: 13,
-                                          ),
-                                          const SizedBox(
-                                            width: 2,
+                                          Text(
+                                            data[index]["dtype"] ??
+                                                "Disaster type",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                                fontFamily: "Montserrat",
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18.sp),
                                           ),
                                           SizedBox(
-                                            width: 100.w,
-                                            child: Text(
-                                              index < Locality.length
-                                                  ? Locality[index] ??
-                                                      "location"
-                                                  : "Fetching location...",
-                                              overflow: TextOverflow.ellipsis,
+                                            height: 6.h,
+                                          ),
+                                          Text(
+                                            "Description: ${data[index]["description"] ?? " Description"} ",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 10.sp,
+                                              fontWeight: FontWeight.w400,
                                             ),
                                           ),
                                           SizedBox(
-                                            width: 10.w,
+                                            height: 2.h,
+                                          ),
+                                          Text(
+                                            "Reported by : ${data[index]["name"] ?? " Name "} ",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 10.sp,
+                                              fontWeight: FontWeight.w400,
+                                            ),
                                           ),
                                           SizedBox(
-                                            width: 80.w,
-                                            child: Text(
-                                              "${data[index]["date"] ?? "date"} ${data[index]["time"] ?? "time"}",
-                                              overflow: TextOverflow.ellipsis,
+                                            height: 2.h,
+                                          ),
+                                          Text(
+                                            "Contact : ${data[index]["contact"]} ",
+                                            overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(
+                                              fontSize: 10.sp,
+                                              fontWeight: FontWeight.w400,
                                             ),
+                                          ),
+                                          SizedBox(
+                                            height: 2.h,
+                                          ),
+                                          Row(
+                                            children: [
+                                              const Icon(
+                                                Icons.location_pin,
+                                                size: 13,
+                                              ),
+                                              SizedBox(
+                                                width: 100.w,
+                                                child: Text(
+                                                  index < Locality.length
+                                                      ? Locality[index] ??
+                                                          "location"
+                                                      : "Fetching location...",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: TextStyle(
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 2,
+                                              ),
+                                              SizedBox(
+                                                width: 60.w,
+                                                child: Text(
+                                                  style: TextStyle(
+                                                    fontSize: 10.sp,
+                                                    fontWeight: FontWeight.w400,
+                                                  ),
+                                                  "${data[index]["date"] ?? "date"} ${data[index]["time"] ?? "time"}",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
                                           ),
                                         ],
                                       ),
+                                      SizedBox(
+                                        width: 15.w,
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 10.w),
+                                        child: SizedBox(
+                                          height: 100.h,
+                                          width: 110.w,
+                                          // child: data[index]["image"] != null
+                                          //     ? Image.network(
+                                          //         data[index]["image"],
+                                          //         fit: BoxFit.fill,
+                                          //       )
+                                          //     : const Placeholder(),
+                                          child: Image.asset(
+                                              'assets/images/flood.jpeg'),
+                                        ),
+                                      ),
                                     ],
                                   ),
-                                  SizedBox(
-                                    width: 15.w,
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(right: 10.w),
-                                    child: SizedBox(
-                                      height: 100.h,
-                                      width: 110.w,
-                                      child: data[index]["image"] != null
-                                          ? Image.network(
-                                              data[index]["image"],
-                                              fit: BoxFit.fill,
-                                            )
-                                          : const Placeholder(),
-                                    ),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(right: 20.w),
-                              child: Divider(
-                                color: Colors.grey[700],
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -266,9 +265,11 @@ class _HomePageOrgState extends State<HomePageOrg> {
                 },
               ),
               if (data.isEmpty)
-                Container(
-                  padding: EdgeInsets.only(top: 150.h),
-                  child: const Text("Waiting for data. Please Wait. "),
+                Center(
+                  child: Container(
+                    padding: EdgeInsets.only(top: 150.h),
+                    child: const Text("Waiting for data. Please Wait. "),
+                  ),
                 )
             ],
           ),

@@ -30,6 +30,9 @@ class ChatService extends ChangeNotifier {
         .doc(chatRoomId)
         .collection('messages')
         .add(newMessage.toMap());
+
+    // Update last active timestamp
+    await updateLastActive();
   }
 
   Stream<QuerySnapshot> getMessage(String userId, String otherUserId) {
@@ -43,5 +46,30 @@ class ChatService extends ChangeNotifier {
         .collection('messages')
         .orderBy('timestamp', descending: false)
         .snapshots();
+  }
+
+  Future<void> updateLastActive() async {
+    final String currentUserId = _firebaseAuth.currentUser!.uid;
+    final Timestamp timestamp = Timestamp.now();
+
+    await _firestore.collection('users').doc(currentUserId).update({
+      'lastActive': timestamp,
+    });
+  }
+
+  Future<void> updateTypingStatus(bool isTyping) async {
+    final String currentUserId = _firebaseAuth.currentUser!.uid;
+
+    await _firestore.collection('users').doc(currentUserId).update({
+      'isTyping': isTyping,
+    });
+  }
+
+  Future<void> updateOnlineStatus(bool isOnline) async {
+    final String currentUserId = _firebaseAuth.currentUser!.uid;
+
+    await _firestore.collection('users').doc(currentUserId).update({
+      'online': isOnline,
+    });
   }
 }
