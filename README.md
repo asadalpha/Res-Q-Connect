@@ -1,6 +1,6 @@
 # ResQ Connect
 
-![ResQ Connect Logo](path_to_your_app_icon) <!-- Replace with the actual path to your app icon --> 
+![ResQ Connect Logo](https://github.com/asadalpha/Res-Q-Connect/blob/main/assets/icons/resq_icon.png) <!-- Replace with the actual path to your app icon --> 
 
 ## Table of Contents
 - [About the App](#about-the-app)
