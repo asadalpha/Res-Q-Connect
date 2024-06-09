@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'package:geocoding/geocoding.dart';
+import 'package:resq_connect/utils/theme.dart';
 
 class MoreInfoOrg extends StatefulWidget {
   const MoreInfoOrg({super.key, required this.disasterType});
@@ -25,7 +26,7 @@ class MoreInfoOrg extends StatefulWidget {
 String _selectedDisasterType = 'Earthquake';
 late File pickedImageFile;
 List<File> images = [];
-final List<String> _disasterTypes = [
+final List<String> disasterTypes = [
   'Earthquake',
   'Flood',
   'Wildfire',
@@ -44,7 +45,7 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
   late String longitude = "0.0";
 
   List<File> imagesList = <File>[];
-  final String _error = 'No Error Detected';
+  final String error = 'No Error Detected';
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
   void addImages() async {
@@ -128,26 +129,24 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+      ),
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Form(
-          key: _formKey,
+          child: Form(
+        key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 5,
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-              const SizedBox(
-                height: 15,
-              ),
               const Center(
                 child: Text(
                   "Details",
@@ -181,62 +180,64 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
                   : const SizedBox(
                       height: 1,
                     ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black12, width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a disaster type';
-                        }
-                        return null;
-                      },
-                      cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                      controller: detailsController,
-                      decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          hintText: "Disaster Details"),
-                      maxLines: 3,
-                    ),
-                  ),
+              Center(
+                child: TextFormField(
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter a disaster type';
+                    }
+                    return null;
+                  },
+                  showCursor: true,
+                  cursorWidth: 2,
+                  cursorColor: Colors.white,
+                  controller: detailsController,
+                  decoration: InputDecoration(
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                      hintText: 'Disaster Details'),
+                  maxLines: 3,
                 ),
               ),
               const SizedBox(
-                height: 2,
+                height: 20,
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black12, width: 2),
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: TextFormField(
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return 'Please enter a name';
-                        }
-                        return null;
-                      },
-                      cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                      controller: contactController,
-                      decoration: const InputDecoration(
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          hintText: "Contact Details"),
-                      maxLines: 1,
+              TextFormField(
+                validator: (value) {
+                  if (value!.isEmpty) {
+                    return 'Please enter a name';
+                  }
+                  return null;
+                },
+                showCursor: true,
+                cursorWidth: 2,
+                cursorColor: Colors.white,
+                controller: contactController,
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                      ),
                     ),
-                  ),
-                ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    hintText: 'Contact Number'),
+                maxLines: 1,
               ),
               const SizedBox(
                 height: 20,
@@ -308,9 +309,13 @@ class _MoreInfoOrgState extends State<MoreInfoOrg> {
                                 // Time
                               },
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      const Color.fromARGB(255, 50, 52, 65)),
-                              child: const Text("Report"),
+                                  backgroundColor: appPrimaryColor),
+                              child: const Text(
+                                "Report",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             )),
                       ),
                     )

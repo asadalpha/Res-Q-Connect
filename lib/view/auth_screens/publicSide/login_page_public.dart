@@ -1,11 +1,9 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:resq_connect/view/auth_screens/publicSide/signup_page_public.dart';
 import 'package:resq_connect/model/auth/services/auth_service.dart';
 import 'package:resq_connect/view/userflow/public_side/bottomNav/bottom_nav_bar_public.dart';
 
 import 'package:resq_connect/view/widgets/customtextfield.dart';
-// import 'package:disaster_managment_sih/auth/screens/signUpOrgPage.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -50,36 +48,32 @@ class _LoginPagePublicState extends State<LoginPagePublic> {
   void dispose() {
     super.dispose();
     emailController.dispose();
-
     passwordController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       body: SafeArea(
           child: Padding(
-        padding: const EdgeInsets.all(10.0),
-        child: Column(children: [
-          Container(
-            height: 200,
-            width: 200,
-            decoration: const BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/loginart.png"))),
-          ),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // Container(
+          //   height: 200,
+          //   width: 200,
+          //   decoration: const BoxDecoration(
+          //       image: DecorationImage(
+          //           image: AssetImage("assets/images/loginart.png"))),
+          // ),
           const Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Align(
-              alignment: Alignment.topLeft,
-              child: Text(
-                "Log In",
-                style: TextStyle(
-                    fontFamily: "Montserrat",
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold),
-              ),
+            padding: EdgeInsets.only(top: 40.0, bottom: 20),
+            child: Text(
+              "Log In",
+              style: TextStyle(
+                  fontFamily: "Montserrat",
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
             ),
           ),
           CustomTextField(
@@ -87,74 +81,72 @@ class _LoginPagePublicState extends State<LoginPagePublic> {
             controller: emailController,
             text1: "Email",
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black12, width: 2),
-                borderRadius: BorderRadius.circular(8),
-              ),
-              child: Center(
-                child: TextFormField(
-                  obscureText: hideText,
-                  cursorColor: const Color.fromARGB(31, 78, 77, 77),
-                  controller: passwordController,
-                  decoration: InputDecoration(
-                      suffixIcon: IconButton(
-                          onPressed: () {
-                            setState(() {
-                              hideText = !hideText;
-                            });
-                          },
-                          icon: hideText
-                              ? Icon(
-                                  Icons.visibility_off_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )
-                              : Icon(
-                                  Icons.visibility_outlined,
-                                  color: Colors.black,
-                                  size: 25.sp,
-                                )),
-                      enabledBorder: InputBorder.none,
-                      focusedBorder: InputBorder.none,
-                      hintText: "Password"),
-                  maxLines: 1,
-                ),
-              ),
-            ),
-          ),
           SizedBox(
-            height: 100.h,
+            height: 20.h,
           ),
-          Padding(
-            padding: const EdgeInsets.all(6.0),
-            child: SizedBox(
-                height: 50,
-                width: double.infinity,
-                child: isSendingReq
-                    ? const Center(
-                        child: CircularProgressIndicator(
-                          valueColor:
-                              AlwaysStoppedAnimation<Color>(Colors.blue),
-                        ),
-                      )
-                    : ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFFF4727A)),
-                        onPressed: () {
-                          signIn();
-                        },
-                        child: const Text(
-                          "Continue",
-                          style: TextStyle(
-                              fontFamily: "Montserrat",
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18),
-                        ))),
+          TextFormField(
+            obscureText: hideText,
+            cursorWidth: 2,
+            cursorColor: Colors.white,
+            controller: passwordController,
+            decoration: InputDecoration(
+                suffixIcon: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        hideText = !hideText;
+                      });
+                    },
+                    icon: hideText
+                        ? Icon(
+                            Icons.visibility_off_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )
+                        : Icon(
+                            Icons.visibility_outlined,
+                            color: Colors.white,
+                            size: 25.sp,
+                          )),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                  borderSide: BorderSide(
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+                hintText: "Password"),
+            maxLines: 1,
           ),
+          const Spacer(),
+          isSendingReq
+              ? const Center(
+                  child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+                  ),
+                )
+              : SizedBox(
+                  height: 50,
+                  width: double.infinity,
+                  child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Theme.of(context).primaryColor,
+                      ),
+                      onPressed: () {
+                        signIn();
+                      },
+                      child: const Text(
+                        "Continue",
+                        style: TextStyle(
+                            color: Colors.white,
+                            // fontFamily: "Montserrat",
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18),
+                      ))),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -165,12 +157,10 @@ class _LoginPagePublicState extends State<LoginPagePublic> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const SignUpPublic()));
                   },
-                  child: const Text(
+                  child: Text(
                     "Sign Up",
                     style: TextStyle(
-                        color: Color(
-                          0xFFF4727A,
-                        ),
+                        color: Theme.of(context).primaryColor,
                         fontWeight: FontWeight.bold),
                   ))
             ],

@@ -22,6 +22,7 @@ class _BottomNavBarOrgState extends State<BottomNavBarOrg> {
     const ChatScreen(),
     const MapScreen(),
     const AboutScreen()
+    
   ];
 
   @override

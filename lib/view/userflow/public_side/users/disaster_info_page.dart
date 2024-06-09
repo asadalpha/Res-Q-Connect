@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_final_fields
 
 import 'package:flutter/material.dart';
+import 'package:resq_connect/utils/theme.dart';
 
 import 'moreinfo.dart';
 
@@ -16,24 +17,24 @@ class _DisasterInfoState extends State<DisasterInfo> {
   String _selectedItem = ' Ongoing';
   @override
   Widget build(BuildContext context) {
-    final _color = const Color.fromARGB(255, 50, 52, 65);
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+      ),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(
-                height: 5,
-              ),
-              IconButton(
-                  onPressed: () {
-                    Navigator.of(context).pop();
-                  },
-                  icon: const Icon(Icons.arrow_back_ios_new_rounded)),
-              const SizedBox(
-                height: 15,
+              SizedBox(
+                height: 20,
               ),
               const Center(
                 child: Text(
@@ -46,13 +47,7 @@ class _DisasterInfoState extends State<DisasterInfo> {
                 ),
               ),
               const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              const SizedBox(
-                height: 20,
+                height: 30,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -68,25 +63,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.water,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Water Shortage",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -105,25 +100,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.local_dining,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Famine",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -150,25 +145,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.flood_outlined,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Flood",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -187,26 +182,26 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.public_outlined,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Earthqauke",
                             style: TextStyle(
                                 fontFamily: "Montserrat",
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -233,25 +228,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.cyclone,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Cyclone",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -270,25 +265,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.fire_truck_outlined,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Fire Hazard",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -315,25 +310,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.landslide_outlined,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Landslide",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
@@ -352,25 +347,25 @@ class _DisasterInfoState extends State<DisasterInfo> {
                       height: 120,
                       width: 120,
                       decoration: BoxDecoration(
-                        border: Border.all(color: _color),
+                        border: Border.all(color: appPrimaryColor),
                         borderRadius: BorderRadius.circular(10),
                       ),
-                      child: Column(
+                      child: const Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 40,
                           ),
                           Icon(
                             Icons.alarm,
-                            color: _color,
+                            color: iconColor,
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 20,
                           ),
                           Text(
                             "Others",
                             style: TextStyle(
-                                color: _color,
+                                color: textColor,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 12),
                           )
